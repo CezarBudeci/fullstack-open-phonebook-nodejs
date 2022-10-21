@@ -21,7 +21,7 @@ if (process.argv.length === 4) {
 const personSchema = new mongoose.Schema({
     name: String,
     number: String
-})
+});
 
 const Person = mongoose.model('Person', personSchema);
 
@@ -30,39 +30,39 @@ if (!showAll) {
     const number = process.argv[4];
 
     mongoose
-    .connect(url)
-    .then(res => {
-        const person = new Person({
-            name: name,
-            number: number
+        .connect(url)
+        .then(() => {
+            const person = new Person({
+                name: name,
+                number: number
+            });
+            return person.save();
         })
-        return person.save();
-    })
-    .then(() => {
-        console.log(`added ${name} number ${number} to phonebook`);
-        return mongoose.connection.close();
-    })
-    .catch(err => console.error(err));
+        .then(() => {
+            console.log(`added ${name} number ${number} to phonebook`);
+            return mongoose.connection.close();
+        })
+        .catch(err => console.error(err));
 } else {
     mongoose
-    .connect(url)
-    .then(resConnection => {
-         return Person
+        .connect(url)
+        .then(() => {
+            return Person
                 .find();
-    })
-    .then((resFind) => {
-        console.log('Phonebook:');
-        if (resFind.length === 0) {
-            console.log('is empty');
-        } else {
-            resFind.forEach(entity => {
-                console.log(`${entity.name} ${entity.number}`);
-            })
-        }
-        mongoose.connection.close();
-    })
-    .catch(err => console.error(err));
-    
+        })
+        .then((resFind) => {
+            console.log('Phonebook:');
+            if (resFind.length === 0) {
+                console.log('is empty');
+            } else {
+                resFind.forEach(entity => {
+                    console.log(`${entity.name} ${entity.number}`);
+                });
+            }
+            mongoose.connection.close();
+        })
+        .catch(err => console.error(err));
+
 }
 
 

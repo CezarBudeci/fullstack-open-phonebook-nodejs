@@ -1,22 +1,25 @@
 {
-  "name": "exercises_3.1_3.12",
+  "name": "exercises_3.1_3.22",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
+    "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongoose": "^6.6.5",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "eslint": "^8.25.0",
     "nodemon": "^2.0.20"
   }
 }
